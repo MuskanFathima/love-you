@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>I Love You Too 💖</title>
+  <title>I Choose You 💖</title>
 
   <style>
     body {
@@ -11,17 +11,26 @@
       height: 100vh;
       background: radial-gradient(circle, #ffafbd, #ffc3a0);
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       overflow: hidden;
       font-family: 'Comic Sans MS', 'Poppins', cursive;
+      text-align: center;
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
       color: white;
-      text-align: center;
       text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+      z-index: 2;
+      margin: 0;
+    }
+
+    p {
+      font-size: 1.3rem;
+      color: white;
+      margin-top: 10px;
       z-index: 2;
     }
 
@@ -29,7 +38,8 @@
       position: absolute;
       color: pink;
       font-size: 20px;
-      animation: float 4s linear infinite;
+      animation: float 5s linear infinite;
+      pointer-events: none;
     }
 
     @keyframes float {
@@ -38,7 +48,7 @@
         opacity: 1;
       }
       100% {
-        transform: translateY(110vh) scale(1.5);
+        transform: translateY(110vh) scale(1.6);
         opacity: 0;
       }
     }
@@ -47,25 +57,46 @@
 
 <body>
 
-<h1>💖 I LOVE YOU TOO 💖</h1>
+<h1>💖 I choose you. Always. 💖</h1>
+<p>Engaged today. Married soon. In love always 💍</p>
 
 <script>
+  const heartTexts = [
+    "❤️",
+    "💖",
+    "💕",
+    "💘",
+    "My person 💕",
+    "My forever 💍",
+    "Soon-to-be us 🥹",
+    "I choose you 💖"
+  ];
+
   function createHeart() {
     const heart = document.createElement("div");
     heart.classList.add("heart");
-    heart.innerHTML = ["❤️","💖","💕","💘"][Math.floor(Math.random() * 4)];
+    heart.innerHTML = heartTexts[Math.floor(Math.random() * heartTexts.length)];
 
     heart.style.left = Math.random() * window.innerWidth + "px";
-    heart.style.fontSize = (Math.random() * 20 + 20) + "px";
-    heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+    heart.style.fontSize = (Math.random() * 18 + 18) + "px";
+    heart.style.animationDuration = (Math.random() * 2 + 4) + "s";
 
     document.body.appendChild(heart);
 
-    setTimeout(() => heart.remove(), 5000);
+    setTimeout(() => heart.remove(), 6000);
   }
 
-  // LOTS of hearts 😍
-  setInterval(createHeart, 80);
+  // EVEN MORE hearts 😍
+  setInterval(createHeart, 60);
+
+  // Final soft emotional line
+  setTimeout(() => {
+    const msg = document.createElement("p");
+    msg.innerText = "I can’t wait to marry you 💍🥹";
+    msg.style.fontSize = "1.5rem";
+    msg.style.marginTop = "20px";
+    document.body.appendChild(msg);
+  }, 4500);
 </script>
 
 </body>
