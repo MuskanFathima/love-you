@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>I Love You Too 💖</title>
+
   <style>
     body {
       margin: 0;
@@ -16,55 +18,55 @@
     }
 
     h1 {
-      font-size: 60px;
+      font-size: 3rem;
       color: white;
+      text-align: center;
       text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-      z-index: 1;
+      z-index: 2;
     }
 
-    .confetti {
+    .heart {
       position: absolute;
-      width: 10px;
-      height: 10px;
-      background-color: red;
-      animation: fall 3s linear infinite;
+      color: pink;
+      font-size: 20px;
+      animation: float 4s linear infinite;
     }
 
-    @keyframes fall {
+    @keyframes float {
       0% {
-        transform: translateY(-100px) rotate(0deg);
+        transform: translateY(-10vh) scale(1);
         opacity: 1;
       }
       100% {
-        transform: translateY(100vh) rotate(360deg);
+        transform: translateY(110vh) scale(1.5);
         opacity: 0;
       }
     }
   </style>
 </head>
+
 <body>
 
-  <h1>🎉 I LOVE YOU TOO 💖 🎉</h1>
+<h1>💖 I LOVE YOU TOO 💖</h1>
 
-  <script>
-    function createConfetti() {
-      const confetti = document.createElement("div");
-      confetti.classList.add("confetti");
+<script>
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = ["❤️","💖","💕","💘"][Math.floor(Math.random() * 4)];
 
-      confetti.style.left = Math.random() * window.innerWidth + "px";
-      confetti.style.backgroundColor =
-        `hsl(${Math.random() * 360}, 100%, 60%)`;
-      confetti.style.animationDuration = (Math.random() * 2 + 2) + "s";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+    heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
 
-      document.body.appendChild(confetti);
+    document.body.appendChild(heart);
 
-      setTimeout(() => {
-        confetti.remove();
-      }, 3000);
-    }
+    setTimeout(() => heart.remove(), 5000);
+  }
 
-    setInterval(createConfetti, 100);
-  </script>
+  // LOTS of hearts 😍
+  setInterval(createHeart, 80);
+</script>
 
 </body>
 </html>
