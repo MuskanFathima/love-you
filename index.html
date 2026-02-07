@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Important Question 💖</title>
+  <title>An Important Question 💖</title>
 
   <style>
     body {
@@ -24,11 +24,18 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       width: 90%;
       max-width: 350px;
+      position: relative;
     }
 
     h1 {
       color: #ff4d6d;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 25px;
     }
 
     .buttons {
@@ -42,6 +49,7 @@
       border: none;
       border-radius: 30px;
       cursor: pointer;
+      min-width: 120px;
     }
 
     #yesBtn {
@@ -55,13 +63,29 @@
       left: 120px;
       top: 50px;
     }
+
+    .msg {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      color: #ff4d6d;
+      animation: fade 1s linear;
+    }
+
+    @keyframes fade {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
   </style>
 </head>
 
 <body>
 
 <div class="card">
-  <h1>Do you love me? 💕</h1>
+  <h1>Do you choose me, today and always? 💍</h1>
+  <div class="subtitle">Be honest… think carefully 😏</div>
 
   <div class="buttons" id="buttonBox">
     <button id="yesBtn" onclick="goToLove()">Yes 💖</button>
@@ -72,6 +96,14 @@
 <script>
   const noBtn = document.getElementById("noBtn");
   const box = document.getElementById("buttonBox");
+  const card = document.querySelector(".card");
+
+  const noMessages = [
+    "Nice try 😌",
+    "Wrong answer 😏",
+    "You know better 😂",
+    "Not allowed 💕"
+  ];
 
   function moveNoButton() {
     const maxX = box.clientWidth - noBtn.offsetWidth;
@@ -82,15 +114,31 @@
 
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
+
+    const msg = document.createElement("div");
+    msg.className = "msg";
+    msg.innerText = noMessages[Math.floor(Math.random() * noMessages.length)];
+    card.appendChild(msg);
+
+    setTimeout(() => msg.remove(), 1000);
   }
 
-  // Desktop + mobile support
+  // Desktop + mobile
   noBtn.addEventListener("mouseenter", moveNoButton);
   noBtn.addEventListener("touchstart", moveNoButton);
   noBtn.addEventListener("pointerenter", moveNoButton);
 
+  // Cute hesitation for YES
+  let yesClicks = 0;
   function goToLove() {
-    window.location.href = "love.html";
+    yesClicks++;
+    if (yesClicks === 1) {
+      alert("Are you sure? 🥹");
+    } else if (yesClicks === 2) {
+      alert("Really really sure?? 💖");
+    } else {
+      window.location.href = "love.html";
+    }
   }
 </script>
 
